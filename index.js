@@ -1,6 +1,7 @@
 const authentication = require('./authentication');
 const newCustomerTrigger = require('./triggers/new_customer.js');
 const newTenantTrigger = require('./triggers/new_tenant.js');
+const newOutboundDocumentTrigger = require('./triggers/new_outbound_document.js');
 const createReportRunCreate = require('./creates/create_report_run.js');
 const createOutboundOrderCreate = require('./creates/create_outbound_order.js');
 const getOutboundOrderCreate = require('./creates/get_outbound_order.js');
@@ -34,5 +35,6 @@ module.exports = {
   triggers: {
     [newCustomerTrigger.key]: newCustomerTrigger,
     [newTenantTrigger.key]: newTenantTrigger,
+    [newOutboundDocumentTrigger.key]: newOutboundDocumentTrigger,
   },
 };

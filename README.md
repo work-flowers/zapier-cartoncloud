@@ -10,6 +10,7 @@ Uses **session auth** with OAuth2 client credentials. Provide your `Client ID` a
 
 | Key | Label | Description |
 |-----|-------|-------------|
+| `new_outbound_document` | New Outbound Document | Triggers when a new document is attached to an outbound order. Polls recently modified orders and fetches their documents. |
 | `new_tenant` | New Tenant | Returns tenants the authenticated user has access to. Hidden — used as a dynamic dropdown. |
 | `new_customer` | New Customer | Returns customers for a given tenant. Hidden — used as a dynamic dropdown. |
 
