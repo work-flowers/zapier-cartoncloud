@@ -24,8 +24,8 @@ const perform = async (z, bundle) => {
   const reportId = reportRun.id;
 
   // Step 2: Poll until report is ready
-  const maxAttempts = 10;
-  const delayMs = 1500;
+  const maxAttempts = 2;
+  const delayMs = 15000;
 
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const fetchOptions = {
