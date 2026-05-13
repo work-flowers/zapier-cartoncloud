@@ -31,6 +31,8 @@ module.exports = {
         key: 'tenant_id',
         type: 'string',
         label: 'Tenant ID',
+        helpText:
+          'CartonCloud tenant ID (UUID). Obtain by calling the New Tenant tool first.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -38,7 +40,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Triggers when a new customer is created',
+    description:
+      'Lists customers under a given CartonCloud tenant. Use to look up a customer ID (UUID) by name before calling Create Outbound Order or Create Report Run, both of which take a customer ID. Requires tenant_id (call the New Tenant tool first if unknown). Returns an array of customers with id and name.',
     hidden: true,
     label: 'New Customer',
   },

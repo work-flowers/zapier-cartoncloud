@@ -31,6 +31,7 @@ module.exports = {
         label: 'Tenant ID',
         type: 'string',
         dynamic: 'new_tenant.id',
+        helpText: 'CartonCloud tenant ID (UUID) the order belongs to.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -39,6 +40,8 @@ module.exports = {
         key: 'order_id',
         label: 'Order ID',
         type: 'string',
+        helpText:
+          "CartonCloud internal order ID (UUID). This is the `id` returned by Create Outbound Order or by the New Outbound Document trigger — NOT the human-facing order_reference.",
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -46,7 +49,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Retrieves an outbound order using its ID. ',
+    description:
+      'Fetches the full record of a single outbound order by its CartonCloud order ID (UUID), including delivery address, line items, status, and timestamps. Requires tenant_id and order_id. Use after Create Outbound Order or the New Outbound Document trigger to retrieve authoritative server state. Returns an order object or 404 if the ID is unknown for the tenant.',
     hidden: false,
     label: 'Get Outbound Order',
   },
