@@ -20,7 +20,8 @@ const perform = async (z, bundle) => {
 module.exports = {
   operation: { perform: perform },
   display: {
-    description: 'Triggers when a new tenant is created. ',
+    description:
+      'Lists all CartonCloud tenants (warehouse organisations) the authenticated user has access to. Use to discover available tenant IDs before calling any other tool — every other tool in this integration requires a tenant_id. Returns an array of tenants with id and name.',
     hidden: true,
     label: 'New Tenant',
   },

@@ -60,6 +60,8 @@ module.exports = {
         label: 'Tenant ID',
         type: 'string',
         dynamic: 'new_tenant.id',
+        helpText:
+          'CartonCloud tenant ID (UUID) to run the report against. Call the New Tenant tool first if unknown.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -69,6 +71,8 @@ module.exports = {
         label: 'Report Type',
         type: 'string',
         choices: ['BULK_CHARGES', 'STOCK_ON_HAND'],
+        helpText:
+          'Required. Report type identifier. One of: "BULK_CHARGES" (billing charges export) or "STOCK_ON_HAND" (current inventory levels).',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -78,6 +82,8 @@ module.exports = {
         label: 'Customer',
         type: 'string',
         dynamic: 'new_customer.id.Customer',
+        helpText:
+          'CartonCloud customer ID (UUID) to scope the report to. Obtain via the New Customer tool.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -85,7 +91,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Creates a new report run. ',
+    description:
+      'Starts an asynchronous CartonCloud report run (BULK_CHARGES or STOCK_ON_HAND) for a tenant + customer, and returns a report_run_id immediately. The report itself runs in the background and may take seconds to several minutes. To get the data, call Retrieve Report with the returned report_run_id; poll until it returns a completed payload.',
     hidden: false,
     label: 'Create Report Run',
   },

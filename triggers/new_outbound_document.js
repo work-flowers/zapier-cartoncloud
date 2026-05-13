@@ -137,6 +137,8 @@ module.exports = {
         label: 'Tenant ID',
         type: 'string',
         dynamic: 'new_tenant.id.Tenant',
+        helpText:
+          'CartonCloud tenant ID (UUID). Call the New Tenant tool first if unknown.',
         required: true,
         list: false,
         altersDynamicFields: true,
@@ -150,7 +152,7 @@ module.exports = {
         list: false,
         altersDynamicFields: false,
         helpText:
-          'Optionally filter to documents on orders for a specific customer.',
+          'Optional CartonCloud customer ID (UUID) to filter by. Omit to return documents for all customers on the tenant. Obtain via the New Customer tool.',
       },
     ],
     sample: {
@@ -171,7 +173,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Triggers when a new document is attached to an outbound order.',
+    description:
+      'Lists new documents attached to outbound orders (e.g. delivery dockets, picking slips, invoices) for a given tenant, optionally scoped to a single customer. Each result includes the document type, name, parent order ID/reference, and a downloadable file URL. Requires tenant_id; customer_id is optional.',
     hidden: false,
     label: 'New Outbound Document',
   },

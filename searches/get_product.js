@@ -30,6 +30,7 @@ module.exports = {
         key: 'tenant_id',
         label: 'Tenant ID',
         type: 'string',
+        helpText: 'CartonCloud tenant ID (UUID) the product belongs to.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -38,6 +39,8 @@ module.exports = {
         key: 'product_id',
         label: 'Product ID',
         type: 'string',
+        helpText:
+          'CartonCloud internal product ID (UUID). This is NOT the SKU / product_code string used on orders — it is the system-assigned UUID returned by product list endpoints or order line items.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -45,7 +48,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Finds a product based on its ID',
+    description:
+      'Fetches the full record of a single product by its CartonCloud internal product ID (UUID), including SKU/product_code, name, dimensions, weight, and other attributes. Requires tenant_id and product_id. Use to resolve a product UUID (e.g. from an order line item) into its human-readable details. Note: this lookup takes the UUID, not the SKU.',
     hidden: false,
     label: 'Get Product',
   },

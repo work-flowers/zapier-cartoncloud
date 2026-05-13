@@ -30,7 +30,8 @@ module.exports = {
         key: 'report_run_id',
         label: 'Report Run ID',
         type: 'string',
-        helpText: 'UUID for the report run',
+        helpText:
+          'Report run ID (UUID) returned by a previous Create Report Run call. Required.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -38,7 +39,8 @@ module.exports = {
     ],
   },
   display: {
-    description: 'Retrieves the results of a report run.',
+    description:
+      'Retrieves the results of a CartonCloud report run by its report_run_id (returned from Create Report Run). Report generation is asynchronous: if the run is still processing this may return an empty/in-progress payload, so callers should poll (e.g. every 15s) until completed results are returned. Pair with Create Report Run; do not call standalone.',
     hidden: true,
     label: 'Retrieve Report',
   },
