@@ -6,6 +6,7 @@ const createOutboundOrderCreate = require('./creates/create_outbound_order.js');
 const getOutboundOrderCreate = require('./creates/get_outbound_order.js');
 const retrieveReportSearch = require('./searches/retrieve_report.js');
 const getProductSearch = require('./searches/get_product.js');
+const searchOutboundOrdersSearch = require('./searches/search_outbound_orders.js');
 
 module.exports = {
   version: require('./package.json').version,
@@ -30,6 +31,7 @@ module.exports = {
   searches: {
     [retrieveReportSearch.key]: retrieveReportSearch,
     [getProductSearch.key]: getProductSearch,
+    [searchOutboundOrdersSearch.key]: searchOutboundOrdersSearch,
   },
   triggers: {
     [newCustomerTrigger.key]: newCustomerTrigger,
