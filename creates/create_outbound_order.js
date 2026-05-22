@@ -103,11 +103,31 @@ const perform = async (z, bundle) => {
       Authorization: `Bearer ${bundle.authData.access_token}`,
     },
     body: body,
+    skipThrowForStatus: true,
   };
 
-  return z.request(options).then((response) => {
-    return response.json;
-  });
+  const response = await z.request(options);
+
+  if (response.status >= 400) {
+    const data = response.json || {};
+    const message =
+      data.message ||
+      data.error ||
+      (Array.isArray(data.errors)
+        ? data.errors.map((e) => e.message || JSON.stringify(e)).join('; ')
+        : null) ||
+      response.content ||
+      `Request failed with status ${response.status}`;
+
+    return {
+      success: false,
+      error: message,
+      status: response.status,
+      details: data,
+    };
+  }
+
+  return { success: true, ...response.json };
 };
 
 module.exports = {
