@@ -4,6 +4,7 @@ const newTenantTrigger = require('./triggers/new_tenant.js');
 const createReportRunCreate = require('./creates/create_report_run.js');
 const createOutboundOrderCreate = require('./creates/create_outbound_order.js');
 const getOutboundOrderCreate = require('./creates/get_outbound_order.js');
+const deleteOutboundOrderCreate = require('./creates/delete_outbound_order.js');
 const retrieveReportSearch = require('./searches/retrieve_report.js');
 const getProductSearch = require('./searches/get_product.js');
 const searchOutboundOrdersSearch = require('./searches/search_outbound_orders.js');
@@ -28,6 +29,7 @@ module.exports = {
     [createReportRunCreate.key]: createReportRunCreate,
     [createOutboundOrderCreate.key]: createOutboundOrderCreate,
     [getOutboundOrderCreate.key]: getOutboundOrderCreate,
+    [deleteOutboundOrderCreate.key]: deleteOutboundOrderCreate,
   },
   searches: {
     [retrieveReportSearch.key]: retrieveReportSearch,
