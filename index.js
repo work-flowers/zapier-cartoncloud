@@ -1,10 +1,12 @@
 const authentication = require('./authentication');
 const newCustomerTrigger = require('./triggers/new_customer.js');
 const newTenantTrigger = require('./triggers/new_tenant.js');
+const newProductTrigger = require('./triggers/new_product.js');
 const createReportRunCreate = require('./creates/create_report_run.js');
 const createOutboundOrderCreate = require('./creates/create_outbound_order.js');
 const getOutboundOrderCreate = require('./creates/get_outbound_order.js');
 const deleteOutboundOrderCreate = require('./creates/delete_outbound_order.js');
+const updateProductCreate = require('./creates/update_product.js');
 const retrieveReportSearch = require('./searches/retrieve_report.js');
 const getProductSearch = require('./searches/get_product.js');
 const searchOutboundOrdersSearch = require('./searches/search_outbound_orders.js');
@@ -30,6 +32,7 @@ module.exports = {
     [createOutboundOrderCreate.key]: createOutboundOrderCreate,
     [getOutboundOrderCreate.key]: getOutboundOrderCreate,
     [deleteOutboundOrderCreate.key]: deleteOutboundOrderCreate,
+    [updateProductCreate.key]: updateProductCreate,
   },
   searches: {
     [retrieveReportSearch.key]: retrieveReportSearch,
@@ -40,5 +43,6 @@ module.exports = {
   triggers: {
     [newCustomerTrigger.key]: newCustomerTrigger,
     [newTenantTrigger.key]: newTenantTrigger,
+    [newProductTrigger.key]: newProductTrigger,
   },
 };
