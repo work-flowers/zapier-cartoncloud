@@ -30,7 +30,9 @@ module.exports = {
         key: 'tenant_id',
         label: 'Tenant ID',
         type: 'string',
-        helpText: 'CartonCloud tenant ID (UUID) the product belongs to.',
+        dynamic: 'new_tenant.id.Tenant',
+        helpText:
+          'CartonCloud tenant ID (UUID) the product belongs to. Call the New Tenant tool first if unknown.',
         required: true,
         list: false,
         altersDynamicFields: false,
@@ -39,8 +41,9 @@ module.exports = {
         key: 'product_id',
         label: 'Product ID',
         type: 'string',
+        dynamic: 'new_product.id.label',
         helpText:
-          'CartonCloud internal product ID (UUID). This is NOT the SKU / product_code string used on orders — it is the system-assigned UUID returned by product list endpoints or order line items.',
+          'CartonCloud internal product ID (UUID). This is NOT the SKU / product_code string used on orders — it is the system-assigned UUID. Pick from the dropdown (populated once a Tenant is selected) or supply the UUID returned by product list endpoints or order line items.',
         required: true,
         list: false,
         altersDynamicFields: false,

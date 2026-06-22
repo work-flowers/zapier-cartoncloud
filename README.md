@@ -13,6 +13,7 @@ Uses **session auth** with OAuth2 client credentials. Provide your `Client ID` a
 | `new_outbound_document` | New Outbound Document | Triggers when a new document is attached to an outbound order. Polls recently modified orders and fetches their documents. |
 | `new_tenant` | New Tenant | Returns tenants the authenticated user has access to. Hidden — used as a dynamic dropdown. |
 | `new_customer` | New Customer | Returns customers for a given tenant. Hidden — used as a dynamic dropdown. |
+| `new_product` | New Product | Returns warehouse products for a given tenant. Hidden — used as a dynamic dropdown for Product ID. |
 
 ## Actions (Creates)
 
@@ -21,6 +22,8 @@ Uses **session auth** with OAuth2 client credentials. Provide your `Client ID` a
 | `create_outbound_order` | Create Outbound Order | Creates an outbound (sales) order with line items, delivery address, and optional date fields. |
 | `create_report_run` | Create Report Run | Initiates a report (STOCK_ON_HAND or BULK_CHARGES) and polls until complete. |
 | `get_outbound_order` | Get Outbound Order | Retrieves an outbound order by ID. |
+| `delete_outbound_order` | Delete Outbound Order | Deletes an outbound order by ID. |
+| `update_product` | Update Product | Updates a warehouse product (by UUID or reference code/SKU) — weight/volume/base qty/barcode per unit of measure, and/or name — via JSON Patch. |
 
 ## Searches
 
@@ -83,11 +86,14 @@ zapier push
 ├── index.js                       # Main entry point, registers all operations
 ├── triggers/
 │   ├── new_tenant.js              # Dynamic dropdown for tenants
-│   └── new_customer.js            # Dynamic dropdown for customers
+│   ├── new_customer.js            # Dynamic dropdown for customers
+│   └── new_product.js             # Dynamic dropdown for products
 ├── creates/
 │   ├── create_outbound_order.js   # Create outbound order
 │   ├── create_report_run.js       # Create + poll report
-│   └── get_outbound_order.js      # Get order by ID
+│   ├── get_outbound_order.js      # Get order by ID
+│   ├── delete_outbound_order.js   # Delete order by ID
+│   └── update_product.js          # Update product (weights/units) by ID
 ├── searches/
 │   ├── get_product.js             # Get product by ID
 │   └── retrieve_report.js         # Retrieve report results
