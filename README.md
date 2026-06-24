@@ -24,6 +24,7 @@ Uses **session auth** with OAuth2 client credentials. Provide your `Client ID` a
 | `get_outbound_order` | Get Outbound Order | Retrieves an outbound order by ID. |
 | `delete_outbound_order` | Delete Outbound Order | Deletes an outbound order by ID. |
 | `update_product` | Update Product | Updates a warehouse product (by UUID or reference code/SKU) — weight/volume/base qty/barcode per unit of measure, and/or name — via JSON Patch. |
+| `add_product` | Add Product | Creates a warehouse product (code/SKU, name, type, customer, base unit of measure, optional weight/volume/barcode/description/expiry). |
 
 ## Searches
 
@@ -93,7 +94,8 @@ zapier push
 │   ├── create_report_run.js       # Create + poll report
 │   ├── get_outbound_order.js      # Get order by ID
 │   ├── delete_outbound_order.js   # Delete order by ID
-│   └── update_product.js          # Update product (weights/units) by ID
+│   ├── update_product.js          # Update product (weights/units) by ID or SKU
+│   └── add_product.js             # Create a new warehouse product
 ├── searches/
 │   ├── get_product.js             # Get product by ID
 │   └── retrieve_report.js         # Retrieve report results

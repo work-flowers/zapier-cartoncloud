@@ -181,6 +181,15 @@ const perform = async (z, bundle) => {
     const message =
       data.message ||
       data.error ||
+      // CartonCloud validation errors come back as a top-level array of
+      // { field, message } objects.
+      (Array.isArray(data)
+        ? data
+            .map((e) =>
+              e.field ? `${e.field}: ${e.message}` : e.message || JSON.stringify(e),
+            )
+            .join('; ')
+        : null) ||
       (Array.isArray(data.errors)
         ? data.errors.map((e) => e.message || JSON.stringify(e)).join('; ')
         : null) ||

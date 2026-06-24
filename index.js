@@ -7,6 +7,7 @@ const createOutboundOrderCreate = require('./creates/create_outbound_order.js');
 const getOutboundOrderCreate = require('./creates/get_outbound_order.js');
 const deleteOutboundOrderCreate = require('./creates/delete_outbound_order.js');
 const updateProductCreate = require('./creates/update_product.js');
+const addProductCreate = require('./creates/add_product.js');
 const retrieveReportSearch = require('./searches/retrieve_report.js');
 const getProductSearch = require('./searches/get_product.js');
 const searchOutboundOrdersSearch = require('./searches/search_outbound_orders.js');
@@ -33,6 +34,7 @@ module.exports = {
     [getOutboundOrderCreate.key]: getOutboundOrderCreate,
     [deleteOutboundOrderCreate.key]: deleteOutboundOrderCreate,
     [updateProductCreate.key]: updateProductCreate,
+    [addProductCreate.key]: addProductCreate,
   },
   searches: {
     [retrieveReportSearch.key]: retrieveReportSearch,
