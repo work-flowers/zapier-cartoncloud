@@ -271,7 +271,7 @@ module.exports = {
   },
   display: {
     description:
-      'Creates a new warehouse product in CartonCloud for a given tenant + customer, with a reference code (SKU), name, type, and a base unit of measure (code, base quantity, and optional weight/volume/barcode). Optional description, expiry requirement, active, and variable-weight flags. Built for the Notion → CartonCloud product sync; field naming mirrors Update Product. Returns { success: true, ...product } with the created product (including its new UUID) on success, or a structured error (e.g. duplicate code) rather than throwing.',
+      'Creates a warehouse product for a customer, with a reference code (SKU), name, type, and base unit of measure.',
     hidden: false,
     label: 'Add Product',
   },
