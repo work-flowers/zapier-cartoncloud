@@ -33,11 +33,9 @@ describe('searches.retrieve_report', () => {
 
     // Now retrieve the completed report
     const retrieveBundle = {
-      authData: {
-        ...authData,
-        tenant_id: process.env.TEST_TENANT_ID,
-      },
+      authData,
       inputData: {
+        tenant_id: process.env.TEST_TENANT_ID,
         report_run_id: reportRun.id,
       },
     };

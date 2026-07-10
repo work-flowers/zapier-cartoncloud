@@ -258,7 +258,7 @@ module.exports = {
   },
   display: {
     description:
-      'Searches outbound (sales) orders in a CartonCloud tenant by order reference, customer (ID or name), and/or a date range on a chosen timestamp (created, modified, dispatched, or packed). Returns full order records. At least one filter is required. IMPORTANT: CartonCloud\'s search API only supports STARTS_WITH/EQUAL_TO/CONTAINS — no native range, GT, or LT operators. Date ranges are implemented client-side by expanding to one STARTS_WITH per day on the ISO 8601 timestamp prefix (YYYY-MM-DD), so ranges are capped at 31 days. Use Get Outbound Order when you already have a specific order UUID; use this tool to find orders by attributes.',
+      'Finds outbound (sale) orders by order reference, customer, and/or a date range (max 31 days). At least one filter is required.',
     hidden: false,
     label: 'Search Outbound Orders',
   },

@@ -174,7 +174,7 @@ module.exports = {
   },
   display: {
     description:
-      'Lists new documents attached to outbound orders (e.g. delivery dockets, picking slips, invoices) for a given tenant, optionally scoped to a single customer. Each result includes the document type, name, parent order ID/reference, and a downloadable file URL. Requires tenant_id; customer_id is optional.',
+      'Triggers when a new document (e.g. invoice, picking slip, delivery docket) is attached to an outbound order.',
     hidden: false,
     label: 'New Outbound Document',
   },

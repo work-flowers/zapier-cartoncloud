@@ -19,24 +19,45 @@ const perform = async (z, bundle) => {
     });
   }
 
+  // The API requires at least one of companyName/contactName on the address,
+  // which Zapier's per-field required flag can't express.
+  if (!bundle.inputData.address_company && !bundle.inputData.address_contact) {
+    return {
+      success: false,
+      error:
+        'Supply at least one of Company or Contact Name for the delivery address (required by the CartonCloud API).',
+      status: 400,
+    };
+  }
+
   // Build address object
   const address = {
-    companyName: bundle.inputData.address_company || '',
-    contactName: bundle.inputData.address_contact || '',
     address1: bundle.inputData.address_street, // was street1
     city: bundle.inputData.address_city,
-    postcode: bundle.inputData.address_postcode,
-    state: {
-      code: bundle.inputData.address_state_code || '',
-    },
     country: {
-      iso2Code: bundle.inputData.address_country_iso2 || '',
+      iso2Code: bundle.inputData.address_country_iso2,
     },
   };
 
   // Optional fields
+  if (bundle.inputData.address_company) {
+    address.companyName = bundle.inputData.address_company;
+  }
+
+  if (bundle.inputData.address_contact) {
+    address.contactName = bundle.inputData.address_contact;
+  }
+
   if (bundle.inputData.address_street_2) {
     address.address2 = bundle.inputData.address_street_2; // was street2
+  }
+
+  if (bundle.inputData.address_state_code) {
+    address.state = { code: bundle.inputData.address_state_code };
+  }
+
+  if (bundle.inputData.address_postcode) {
+    address.postcode = bundle.inputData.address_postcode;
   }
 
   if (bundle.inputData.address_email) {
@@ -151,8 +172,8 @@ module.exports = {
         type: 'string',
         dynamic: 'new_customer.id.name',
         helpText:
-          'Optional CartonCloud customer ID (UUID) this order is for. Obtain via the New Customer tool. Omit to create the order without an associated customer.',
-        required: false,
+          'CartonCloud customer ID (UUID) this order is for. Required by the CartonCloud API. Obtain via the New Customer tool.',
+        required: true,
         list: false,
         altersDynamicFields: false,
       },
@@ -171,7 +192,7 @@ module.exports = {
         label: 'Warehouse',
         type: 'string',
         helpText:
-          "Optional warehouse code (string) identifying the fulfilment warehouse. Omit to use the tenant's default warehouse.",
+          "Optional warehouse ID (UUID) identifying the fulfilment warehouse. Omit to use the tenant's default warehouse.",
         required: false,
         list: false,
         altersDynamicFields: false,
@@ -221,8 +242,8 @@ module.exports = {
         label: 'State Code',
         type: 'string',
         helpText:
-          'Required. State or region code in the destination country (e.g. "NSW", "VIC" for AU; "CA", "NY" for US).',
-        required: true,
+          'Optional state or region code in the destination country (e.g. "NSW", "VIC" for AU). Recommended for SHIPPING orders.',
+        required: false,
         list: false,
         altersDynamicFields: false,
       },
@@ -230,8 +251,9 @@ module.exports = {
         key: 'address_postcode',
         label: 'Postcode',
         type: 'string',
-        helpText: 'Required. Postcode or ZIP for the delivery address.',
-        required: true,
+        helpText:
+          'Optional postcode or ZIP for the delivery address. Recommended for SHIPPING orders.',
+        required: false,
         list: false,
         altersDynamicFields: false,
       },
@@ -240,9 +262,10 @@ module.exports = {
         label: 'Country Code (ISO2)',
         type: 'string',
         choices: ['AU'],
+        default: 'AU',
         helpText:
-          'Optional ISO 3166-1 alpha-2 country code (e.g. "AU"). Currently only "AU" is accepted. Omit to use the tenant default.',
-        required: false,
+          'ISO 3166-1 alpha-2 country code (e.g. "AU"). Required by the CartonCloud API. Currently only "AU" is accepted.',
+        required: true,
         list: false,
         altersDynamicFields: false,
       },
@@ -290,7 +313,8 @@ module.exports = {
         key: 'address_company',
         label: 'Company',
         type: 'string',
-        helpText: 'Optional company/business name at the delivery address.',
+        helpText:
+          'Company/business name at the delivery address. The CartonCloud API requires at least one of Company or Contact Name.',
         required: false,
         list: false,
         altersDynamicFields: false,
@@ -299,7 +323,8 @@ module.exports = {
         key: 'address_contact',
         label: 'Contact Name',
         type: 'string',
-        helpText: 'Optional name of the contact person at the delivery address.',
+        helpText:
+          'Name of the contact person at the delivery address. The CartonCloud API requires at least one of Company or Contact Name.',
         required: false,
         list: false,
         altersDynamicFields: false,
@@ -336,8 +361,8 @@ module.exports = {
     ],
   },
   display: {
-      description:
-        'Creates a new outbound (sales) order in CartonCloud with a delivery address and one or more line items, then returns the created order including its ID and reference. Required: tenant_id, order_reference, delivery_method_type, full delivery address (street, city, state code, postcode), and parallel product_code/quantity arrays (one entry per line item, aligned by index). Customer is optional but recommended for billing/reporting. Use the Get Outbound Order tool afterwards if the caller needs the full server-side representation.',
+    description:
+      'Creates an outbound (sale) order with a delivery address and one or more line items.',
     hidden: false,
     label: 'Create Outbound Order',
   },

@@ -92,7 +92,7 @@ module.exports = {
   },
   display: {
     description:
-      'Starts an asynchronous CartonCloud report run (BULK_CHARGES or STOCK_ON_HAND) for a tenant + customer, and returns a report_run_id immediately. The report itself runs in the background and may take seconds to several minutes. To get the data, call Retrieve Report with the returned report_run_id; poll until it returns a completed payload.',
+      'Starts an asynchronous report run (Bulk Charges or Stock on Hand) for a customer and returns its report run ID. Fetch results with Retrieve Report.',
     hidden: false,
     label: 'Create Report Run',
   },

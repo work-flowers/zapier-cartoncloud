@@ -66,7 +66,7 @@ module.exports = {
   },
   display: {
     description:
-      'Deletes an outbound (sales) order in CartonCloud by its internal order ID (UUID). Requires tenant_id and order_id. Deletion is only permitted for certain sale order statuses, configured via the tenant\'s Sale Order Allowed Edit/Delete organisation setting — calls against orders in a disallowed status will return a structured error rather than throw. Returns { success: true, id, status: 204 } on success.',
+      'Deletes an outbound (sale) order by its CartonCloud order ID. Only allowed for statuses permitted by the tenant\'s Sale Order edit/delete setting.',
     hidden: false,
     label: 'Delete Outbound Order',
   },

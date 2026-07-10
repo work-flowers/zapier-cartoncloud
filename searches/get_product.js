@@ -52,7 +52,7 @@ module.exports = {
   },
   display: {
     description:
-      'Fetches the full record of a single product by its CartonCloud internal product ID (UUID), including SKU/product_code, name, dimensions, weight, and other attributes. Requires tenant_id and product_id. Use to resolve a product UUID (e.g. from an order line item) into its human-readable details. Note: this lookup takes the UUID, not the SKU.',
+      'Fetches a single warehouse product by its CartonCloud product ID (UUID, not SKU), including code, name, and unit-of-measure details.',
     hidden: false,
     label: 'Get Product',
   },

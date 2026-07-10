@@ -50,7 +50,7 @@ module.exports = {
   },
   display: {
     description:
-      'Fetches the full record of a single outbound order by its CartonCloud order ID (UUID), including delivery address, line items, status, and timestamps. Requires tenant_id and order_id. Use after Create Outbound Order or the New Outbound Document trigger to retrieve authoritative server state. Returns an order object or 404 if the ID is unknown for the tenant.',
+      'Fetches a single outbound order by its CartonCloud order ID, including delivery address, line items, and status.',
     hidden: false,
     label: 'Get Outbound Order',
   },

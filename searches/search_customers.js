@@ -112,7 +112,7 @@ module.exports = {
   },
   display: {
     description:
-      'Lists customers under a given CartonCloud tenant, optionally filtered client-side by name (CONTAINS / STARTS_WITH / EQUAL_TO, case-insensitive) or exact customer ID. Returns an array of { id, name } objects. Use to resolve a customer name into a customer UUID before calling Create Outbound Order or Create Report Run. Note: CartonCloud\'s list-customers endpoint does not support server-side filtering or pagination, so the full list is fetched and filtered locally.',
+      'Finds customers in a CartonCloud tenant, optionally filtered by name or customer ID.',
     hidden: false,
     label: 'List Customers',
   },

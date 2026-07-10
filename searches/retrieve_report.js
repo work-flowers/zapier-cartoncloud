@@ -1,6 +1,6 @@
 const perform = async (z, bundle) => {
   const options = {
-    url: `https://api.cartoncloud.com/tenants/${bundle.authData.tenant_id}/report-runs/${bundle.inputData.report_run_id}`,
+    url: `https://api.cartoncloud.com/tenants/${bundle.inputData.tenant_id}/report-runs/${bundle.inputData.report_run_id}`,
     method: 'GET',
     headers: {
       'Accept-Version': '1',
@@ -27,6 +27,17 @@ module.exports = {
     perform: perform,
     inputFields: [
       {
+        key: 'tenant_id',
+        label: 'Tenant ID',
+        type: 'string',
+        dynamic: 'new_tenant.id.Tenant',
+        helpText:
+          'CartonCloud tenant ID (UUID) the report run belongs to — the same tenant passed to Create Report Run. Call the New Tenant tool first if unknown.',
+        required: true,
+        list: false,
+        altersDynamicFields: false,
+      },
+      {
         key: 'report_run_id',
         label: 'Report Run ID',
         type: 'string',
@@ -40,7 +51,7 @@ module.exports = {
   },
   display: {
     description:
-      'Retrieves the results of a CartonCloud report run by its report_run_id (returned from Create Report Run). Report generation is asynchronous: if the run is still processing this may return an empty/in-progress payload, so callers should poll (e.g. every 15s) until completed results are returned. Pair with Create Report Run; do not call standalone.',
+      'Retrieves the results of a report run started by Create Report Run. Poll until the run completes.',
     hidden: true,
     label: 'Retrieve Report',
   },

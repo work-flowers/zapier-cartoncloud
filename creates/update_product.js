@@ -307,7 +307,7 @@ module.exports = {
   },
   display: {
     description:
-      'Updates an existing CartonCloud warehouse product, identified by either its internal product ID (UUID) or its reference code / SKU, pushing changed attributes such as a unit of measure\'s weight, volume, base quantity, or barcode, and/or the product name. Built for syncing product config (e.g. weights/units) from an external source of truth like Notion. When only a code is given it is resolved to a single product within the tenant. Sends a JSON Patch (replace) per supplied field; unit-of-measure fields require the Unit of Measure Code. Supply at least one field to change — calls with nothing to update, an unresolvable/ambiguous code, or a disallowed status return a structured error rather than throw. Returns { success: true, ...product } with the updated product on success.',
+      'Updates a warehouse product\'s name or unit-of-measure details (weight, volume, base quantity, barcode), identified by product ID or SKU.',
     hidden: false,
     label: 'Update Product',
   },
